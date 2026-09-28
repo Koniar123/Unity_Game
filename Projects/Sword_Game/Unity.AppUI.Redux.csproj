@@ -16,9 +16,9 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <EnableDefaultItems>false</EnableDefaultItems>
     <LangVersion>9.0</LangVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>Unity.AppUI.Redux</RootNamespace>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Unity.AppUI.Redux</AssemblyName>
     <TargetFramework>netstandard2.1</TargetFramework>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
@@ -49,20 +49,46 @@
     <Analyzer Include="K:\UnityHub\Editors\6000.5.0f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
     <Analyzer Include="K:\UnityHub\Editors\6000.5.0f1\Editor\Data\Tools\BuildPipeline\Unity.Analyzers.Common\Unity.Analyzers.Common.dll" />
     <Analyzer Include="K:\UnityHub\Editors\6000.5.0f1\Editor\Data\Tools\BuildPipeline\Unity.Analyzers.LongLiving\Unity.Analyzers.LongLiving.dll" />
-    <Analyzer Include="K:\Unity\My project\Library\PackageCache\com.unity.ai.inference@9a123aee5df7\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
-    <Analyzer Include="K:\Unity\My project\Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
-    <Analyzer Include="K:\Unity\My project\Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\MVVM\SourceGenerators\netstandard2.0\MVVMSourceGenerators.dll" />
+    <Analyzer Include="K:\Github\Unity_Game\Projects\Sword_Game\Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
     <Analyzer Include="K:\UnityHub\Editors\6000.5.0f1\Editor\Data\BCLExtensions\TargetingPacks\netstandard2.1\analyzers\dotnet\roslyn4.0\cs\Microsoft.Extensions.Logging.Generators.dll" />
     <Analyzer Include="K:\UnityHub\Editors\6000.5.0f1\Editor\Data\BCLExtensions\TargetingPacks\netstandard2.1\analyzers\dotnet\roslyn4.0\cs\System.Text.Json.SourceGeneration.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\EnemyAI.cs" />
-    <Compile Include="Assets\Scripts\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\PlayerInputActions.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\EnemyHealth.cs" />
-    <Compile Include="Assets\Scripts\SwordHit.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\States.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\PartitionedState.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\ThunkStatus.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\DevToolsService.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Thunk.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\DiffGenerator.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\Instrument\LiftReducerWith.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Delegates.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\Instrument\States.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Subscription.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\AsyncThunkActions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Builder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Interfaces.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\AsyncThunkAPI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Exceptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Action.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\DevToolsUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\Instrument\LiftedSubscription.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\AsyncThunkOptions{T}.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\Instrument\Actions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\Instrument\InstrumentedStore.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Meta.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\AsyncThunkActionCreator{T,U}.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Slice.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\Actions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\AsyncThunkOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\StoreFactory.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\StoreExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\Instrument\Enhancer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\DevTools\Contexts.cs" />
+    <Compile Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Store{TStoreState}.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Library\PackageCache\com.unity.dt.app-ui@b097002a00c2\Runtime\Redux\Unity.AppUI.Redux.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1195,88 +1221,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.InferenceEngine.ONNX.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj" />
-    <ProjectReference Include="Unity.AppUI.Navigation.csproj" />
-    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj" />
-    <ProjectReference Include="UnityEditor.UI.Analytics.csproj" />
-    <ProjectReference Include="Unity.TextMeshPro.csproj" />
-    <ProjectReference Include="Unity.Rendering.LightTransport.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj" />
-    <ProjectReference Include="Unity.AI.Assistant.Agent.Dynamic.Extension.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Assistant.API.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.2D.Editor.Overrides.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Updater.csproj" />
-    <ProjectReference Include="Unity.Timeline.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj" />
-    <ProjectReference Include="Unity.PathTracing.Runtime.csproj" />
-    <ProjectReference Include="Unity.AI.Assistant.Integrations.Profiler.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.2D.Runtime.csproj" />
-    <ProjectReference Include="Unity.AI.Assistant.Tools.Editor.csproj" />
-    <ProjectReference Include="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj" />
-    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj" />
-    <ProjectReference Include="Unity.Burst.Editor.csproj" />
-    <ProjectReference Include="Unity.AppUI.Undo.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Core.csproj" />
-    <ProjectReference Include="Unity.Searcher.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.MCP.Runtime.csproj" />
-    <ProjectReference Include="Unity.UnifiedRayTracing.Runtime.csproj" />
-    <ProjectReference Include="Unity.InferenceEngine.MacBLAS.csproj" />
-    <ProjectReference Include="Unity.Rider.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Assistant.Bridge.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
-    <ProjectReference Include="Unity.InternalAPIEditorBridge.ShaderGraph.Editor.csproj" />
-    <ProjectReference Include="Unity.InferenceEngine.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj" />
-    <ProjectReference Include="Unity.AI.Assistant.Annotations.Editor.csproj" />
-    <ProjectReference Include="Unity.AppUI.MVVM.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Flow.csproj" />
-    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Assistant.Runtime.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualStudio.Editor.csproj" />
-    <ProjectReference Include="Unity.AI.Tracing.csproj" />
-    <ProjectReference Include="Unity.AppUI.Redux.Editor.csproj" />
-    <ProjectReference Include="Unity.SurfaceCache.Runtime.csproj" />
-    <ProjectReference Include="Unity.Collections.csproj" />
-    <ProjectReference Include="Unity.InputSystem.ForUI.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.GPUDriven.Runtime.csproj" />
-    <ProjectReference Include="Unity.Timeline.Editor.csproj" />
-    <ProjectReference Include="Unity.AppUI.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj" />
-    <ProjectReference Include="Unity.Mathematics.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj" />
-    <ProjectReference Include="Unity.Multiplayer.Center.Common.csproj" />
-    <ProjectReference Include="UnityEngine.UI.csproj" />
-    <ProjectReference Include="Unity.Burst.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Core.Editor.csproj" />
-    <ProjectReference Include="HFDownloader.csproj" />
-    <ProjectReference Include="Unity.InternalAPIEngineBridge.004.csproj" />
-    <ProjectReference Include="Unity.Multiplayer.Center.Editor.csproj" />
-    <ProjectReference Include="Unity.PathTracing.Editor.csproj" />
-    <ProjectReference Include="Unity.InferenceEngine.Tokenization.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.State.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
-    <ProjectReference Include="Unity.AppUI.Navigation.Editor.csproj" />
-    <ProjectReference Include="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.csproj" />
-    <ProjectReference Include="Unity.Collections.Editor.csproj" />
     <ProjectReference Include="Unity.AppUI.csproj" />
-    <ProjectReference Include="Unity.ShaderGraph.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
-    <ProjectReference Include="Unity.InferenceEngine.iOSBLAS.csproj" />
-    <ProjectReference Include="Unity.InputSystem.csproj" />
+    <ProjectReference Include="Unity.AppUI.InternalAPIBridge.csproj" />
+    <ProjectReference Include="UnityEngine.UI.csproj" />
     <ProjectReference Include="UnityEditor.UI.csproj" />
-    <ProjectReference Include="Unity.AppUI.Redux.csproj" />
-    <ProjectReference Include="Unity.AI.MCP.Editor.csproj" />
-    <ProjectReference Include="Unity.InferenceEngine.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
