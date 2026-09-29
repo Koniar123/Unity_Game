@@ -3,15 +3,31 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float health = 100f;
+    
+    private float currentHealth;
+    private bool isDead;
+
+    public bool IsDead => isDead; 
+
+    void Start()
+    {
+        currentHealth = health;
+    }
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        if (isDead)
+            return;
 
-        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
+        currentHealth -= damage;
 
-        if (health <= 0)
+        currentHealth = Mathf.Max(currentHealth, 0f);
+
+        Debug.Log ("Enemy took " + damage + " damage. Remaining health " + currentHealth);
+
+        if (currentHealth <= 0f && !isDead)
         {
+            isDead = true; 
             Die();
         }
     }
@@ -20,16 +36,5 @@ public class EnemyHealth : MonoBehaviour
     {
         Debug.Log("Enemy Died");
         Destroy(gameObject);
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
