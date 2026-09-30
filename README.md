@@ -1,6 +1,6 @@
-# Unity Learning
+# Unity
 
-This repository contains my Unity learning projects, experiments, and development journal.
+This repository contains my Unity projects, experiments, and development journal.
 
 The main project in this repository is a first-person melee combat game built in Unity. The project focuses on learning and implementing core gameplay systems using C# and Unity.
 
