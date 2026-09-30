@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -21,12 +20,11 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 1.5f;
-    [SerializeField] private float attackDelay = 0.4f;
-    [SerializeField] private float attackDamage = 10f;
 
     private Transform player;
     private PlayerHealth playerHealth;
     private EnemyHealth enemyHealth;
+    private Animator animator;
 
     private EnemyState currentState;
 
@@ -45,17 +43,10 @@ public class EnemyAI : MonoBehaviour
         player = playerObject.transform;
 
         playerHealth = playerObject.GetComponent<PlayerHealth>();
+
         enemyHealth = GetComponent<EnemyHealth>();
 
-        if (playerHealth == null)
-        {
-            Debug.LogError("EnemyAI: Player nie ma PlayerHealth!");
-        }
-
-        if (enemyHealth == null)
-        {
-            Debug.LogError("EnemyAI: Enemy nie ma Health!");
-        }
+        animator = GetComponentInChildren<Animator>();
 
         Debug.Log("Enemy znalazł gracza.");
 
@@ -103,86 +94,27 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer(Vector3 direction)
     {
-        Quaternion targetRotation =
-            Quaternion.LookRotation(direction);
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            rotationSpeed * Time.deltaTime
-        );
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        transform.position +=
-            direction.normalized * moveSpeed * Time.deltaTime;
+        transform.position += direction.normalized * moveSpeed * Time.deltaTime;
     }
 
     private void AttackPlayer(Vector3 direction)
     {
         if (direction.sqrMagnitude > 0.01f)
         {
-            Quaternion targetRotation =
-                Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.LookRotation(direction);
         }
 
         lastAttackTime = Time.time;
 
         Debug.Log("Enemy attacks the player!");
 
-        StartCoroutine(AttackRoutine());
-
-        isAttacking = true;
-    }
-
-    private IEnumerator AttackRoutine()
-    {
         isAttacking = true;
 
-        Debug.Log("Enemy starts attack!");
-
-        yield return new WaitForSeconds(attackDelay);
-
-        if (playerHealth == null || playerHealth.IsDead)
-        {
-            isAttacking = false;
-            yield break;
-        }
-
-        if (enemyHealth == null || enemyHealth.IsDead)
-        {
-            isAttacking = false;
-            yield break;
-        }
-
-        Vector3 direction = player.position - transform.position;
-
-        direction.y = 0f;
-
-        float distance = direction.magnitude;
-
-        if (distance > attackRange)
-        {
-            Debug.Log("Player escaped the attack range.");
-
-            isAttacking = false;
-            currentState = EnemyState.Chase;
-            yield break;
-        }
-
-        DealDamage();
-
-        isAttacking = false;
-        currentState = EnemyState.Chase;
-    }
-
-    private void DealDamage()
-    {
-        playerHealth.TakeDamage(attackDamage);
-
-        Debug.Log(
-            "Enemy dealt " +
-            attackDamage +
-            " damage to the player."
-        );
+        animator.SetTrigger("Attack");
     }
 
     private void HandleIdle()
@@ -233,5 +165,11 @@ public class EnemyAI : MonoBehaviour
             return;
 
         AttackPlayer(player.position - transform.position);
+    }
+
+    public void FinishAttack()
+    {
+        isAttacking = false;
+        currentState = EnemyState.Chase;
     }
 }

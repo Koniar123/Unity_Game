@@ -25,15 +25,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float sprintBobSpeed = 15f;
     [SerializeField] private float sprintBobAmount = 0.1f;
 
-    [Header("Combat")]
-    [SerializeField] private float attackCooldown = 0.5f;
 
-
-    private float lastAttackTime;
     private PlayerInputActions inputActions;
     private CharacterController characterController;
     private Animator animator;
-    private bool isBlocking;
+    private PlayerCombat playerCombat;
 
     private float xRotation;
     private float verticalVelocity;
@@ -47,12 +43,9 @@ public class PlayerMovement : MonoBehaviour
 
         characterController = GetComponent<CharacterController>();
 
-        animator = GetComponentInChildren<Animator>();
+        playerCombat = GetComponent<PlayerCombat>();
 
-        if (characterController == null)
-        {
-            Debug.LogError("Player nie ma CharacterController!");
-        }
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnEnable()
@@ -78,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
         Look();
         MovePlayer();
         HeadBob();
-        Attack();
-        Block();
     }
 
     private void MovePlayer()
@@ -95,13 +86,12 @@ public class PlayerMovement : MonoBehaviour
             movement.Normalize();
         }
 
-        bool isSprinting = inputActions.Player.Sprint.IsPressed() && !isBlocking;
+        bool isSprinting = inputActions.Player.Sprint.IsPressed() && !playerCombat.IsBlocking;
 
         float currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
 
         movement *= currentSpeed;
 
-        // Jump + gravity
         if (characterController.isGrounded)
         {
             if (verticalVelocity < 0f)
@@ -109,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
                 verticalVelocity = -2f;
             }
 
-            if (inputActions.Player.Jump.WasPressedThisFrame() && !isBlocking)
+            if (inputActions.Player.Jump.WasPressedThisFrame() && !playerCombat.IsBlocking)
             {
                 verticalVelocity = Mathf.Sqrt(
                     jumpHeight * -2f * gravity
@@ -142,35 +132,12 @@ public class PlayerMovement : MonoBehaviour
             Quaternion.Euler(xRotation, 0f, 0f);
     }
 
-    private void Attack()
-    {
-        if (isBlocking)
-            return;
-
-        if (!inputActions.Player.Attack.WasPressedThisFrame())
-            return;
-
-        if (Time.time < lastAttackTime + attackCooldown)
-            return;
-
-        lastAttackTime = Time.time;
-
-        animator.SetTrigger("Attack");
-    }
-
-    private void Block()
-    {
-        isBlocking = inputActions.Player.Block.IsPressed();
-
-        animator.SetBool("Block", isBlocking);
-    }
-    
     private void HeadBob()
     {
         Vector2 input = inputActions.Player.Move.ReadValue<Vector2>();
 
         bool isMoving = input.magnitude > 0.1f;
-        bool isSprinting = inputActions.Player.Sprint.IsPressed() && !isBlocking;
+        bool isSprinting = inputActions.Player.Sprint.IsPressed() && !playerCombat.IsBlocking;
 
         if (characterController.isGrounded && isMoving)
         {
