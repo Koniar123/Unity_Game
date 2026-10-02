@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     private Animator animator;
     private PlayerCombat playerCombat;
+    private PlayerAttackDirection playerAttackDirection;
 
     private float xRotation;
     private float verticalVelocity;
@@ -44,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         playerCombat = GetComponent<PlayerCombat>();
+
+        playerAttackDirection = GetComponent<PlayerAttackDirection>();
 
         animator = GetComponentInChildren<Animator>();
     }
@@ -118,6 +121,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Look()
     {
+        if (playerAttackDirection.IsChoosingDirection)
+            return;
+            
         Vector2 lookInput = inputActions.Player.Look.ReadValue<Vector2>();
 
         float mouseX = lookInput.x * mouseSensitivity;

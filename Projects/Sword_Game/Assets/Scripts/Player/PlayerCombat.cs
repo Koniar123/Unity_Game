@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -6,7 +5,9 @@ public class PlayerCombat : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 0.5f;
 
+    private PlayerAttackDirection playerAttackDirection;
     private PlayerInputActions inputActions;
+    private PlayerAttackController playerAttackController;
     private Animator animator;
 
     private float lastAttackTime;
@@ -18,6 +19,8 @@ public class PlayerCombat : MonoBehaviour
     {
         inputActions = new PlayerInputActions();
 
+        playerAttackDirection = GetComponent<PlayerAttackDirection>();
+        playerAttackController = GetComponent<PlayerAttackController>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -36,6 +39,7 @@ public class PlayerCombat : MonoBehaviour
         Attack();
         Block();
     }
+    
     private void Attack()
     {
         if (isBlocking)
@@ -48,6 +52,18 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         lastAttackTime = Time.time;
+
+        float attackAngle = playerAttackDirection.AttackAngle;
+
+        Vector3 worldAttackDirection = playerAttackController.GetAttackDirection();
+
+        Debug.Log("World Attack Direction: " + worldAttackDirection);
+
+        Debug.Log("Attack Angle: " + attackAngle);
+
+        playerAttackController.SetAttackDirection();
+
+        animator.SetFloat("AttackAngle", attackAngle);
 
         animator.SetTrigger("Attack");
     }

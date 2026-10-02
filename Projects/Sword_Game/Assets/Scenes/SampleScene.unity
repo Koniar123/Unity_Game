@@ -938,6 +938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1052296126}
   - component: {fileID: 1052296127}
+  - component: {fileID: 1052296128}
   m_Layer: 0
   m_Name: HoldPoint
   m_TagString: Untagged
@@ -974,6 +975,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordHit
   damage: 25
+--- !u!114 &1052296128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052296125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ab02beb1ceb654c9eaed30092d02c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackController
+  holdPoint: {fileID: 1052296126}
 --- !u!1 &1112802733 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6257560b04a043e4aab0e9e14ecfd711, type: 3}
@@ -1133,7 +1147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6257560b04a043e4aab0e9e14ecfd711, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.35024944
+      value: 0.3502494
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6257560b04a043e4aab0e9e14ecfd711, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1326,6 +1340,8 @@ GameObject:
   - component: {fileID: 1513866400}
   - component: {fileID: 1513866401}
   - component: {fileID: 1513866402}
+  - component: {fileID: 1513866403}
+  - component: {fileID: 1513866404}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1502,6 +1518,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   attackCooldown: 0.5
+--- !u!114 &1513866403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513866392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a86308db2b85474998e5a933cbdb33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackDirection
+  directionSensitivity: 1
+--- !u!114 &1513866404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513866392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ab02beb1ceb654c9eaed30092d02c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackController
+  holdPoint: {fileID: 1052296126}
 --- !u!1 &1648486701
 GameObject:
   m_ObjectHideFlags: 0
