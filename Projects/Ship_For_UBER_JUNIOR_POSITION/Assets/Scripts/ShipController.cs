@@ -1,49 +1,91 @@
 using UnityEngine;
 
+[RequireComponent(typeof(ShipInput))]
 public class ShipController : MonoBehaviour
 {
+    private const float MaxSailOpening = 100f;
+    private const float MaxSailRotation = 45f;
+
+    [Header("References")]
     [SerializeField] private Transform sail;
-    [SerializeField] private float maxSailOpening = 100f;
-    [SerializeField] private float maxSailRotation = 45f;
+    [SerializeField] private Transform referenceFrame;
 
-    private ShipInput _shipInput;
+    [Header("Sail")]
+    [SerializeField] private float sailOpeningSpeed = 50f;
+    [SerializeField] private float sailRotationSpeed = 45f;
 
-    private float _sailOpening;
-    private float _sailRotation;
+    private ShipInput shipInput;
+    private float sailOpening;
+    private float sailRotation;
 
-    public float SailOpening => _sailOpening;
-    public float SailRotation => _sailRotation;
+    public float SailOpening => sailOpening;
+
+    public float SailOpeningNormalized => sailOpening / MaxSailOpening;
+
+    public float SailRotation => sailRotation;
+
+    public Vector3 SailForward
+    {
+        get
+        {
+            Vector3 forward = sail.forward;
+            forward.y = 0f;
+
+            return forward.sqrMagnitude > 0.0001f
+                ? forward.normalized
+                : transform.forward;
+        }
+    }
 
     private void Awake()
     {
-        _shipInput = GetComponent<ShipInput>();
+        shipInput = GetComponent<ShipInput>();
+
+        if (sail == null)
+        {
+            Debug.LogError("ShipController: the Sail field is empty. Assign the SailPivot object.", this);
+        }
+        else if (sail.GetComponent<SailCloth>() == null)
+        {
+            Debug.LogWarning(
+                "ShipController: the assigned sail has no SailCloth component. " +
+                "Assign the object that has SailCloth.",
+                this);
+        }
     }
 
     private void Update()
     {
         UpdateSailOpening();
         UpdateSailRotation();
-        UpdateSailTransform();
+        ApplySailTransform();
     }
 
     private void UpdateSailOpening()
     {
-        float input = _shipInput.SailOpeningInput;
-
-        _sailOpening += input * 50f * Time.deltaTime; // Adjust the multiplier as needed for sensitivity
-        _sailOpening = Mathf.Clamp(_sailOpening, 0f, maxSailOpening); // Clamp the sail opening between 0 and maxSailOpening
+        sailOpening += shipInput.SailOpeningInput * sailOpeningSpeed * Time.deltaTime;
+        sailOpening = Mathf.Clamp(sailOpening, 0f, MaxSailOpening);
     }
 
     private void UpdateSailRotation()
     {
-        float input = _shipInput.SailRotationInput;
-
-        _sailRotation += input * 45f * Time.deltaTime;
-        _sailRotation = Mathf.Clamp(_sailRotation, -maxSailRotation, maxSailRotation);
+        sailRotation += shipInput.SailRotationInput * sailRotationSpeed * Time.deltaTime;
+        sailRotation = Mathf.Clamp(sailRotation, -MaxSailRotation, MaxSailRotation);
     }
 
-    private void UpdateSailTransform()
+    private void ApplySailTransform()
     {
-        sail.localRotation = Quaternion.Euler(0f, _sailRotation, -90f);
+        Quaternion yaw = Quaternion.Euler(0f, sailRotation - 90f, 0f);
+
+        if (referenceFrame != null)
+        {
+            // World rotation = frame rotation * yaw around the mast.
+            // Ignores any odd rotation of the parents.
+            sail.rotation = referenceFrame.rotation * yaw;
+        }
+        else
+        {
+            sail.localRotation = yaw;
+        }
     }
 }
