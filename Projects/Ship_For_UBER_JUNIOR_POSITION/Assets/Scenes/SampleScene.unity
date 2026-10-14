@@ -830,15 +830,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49192fda200e02d449043cb85ea6dc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipMovement
-  wind: {fileID: 811392199}
-  shipMass: 500
-  forwardDrag: 15
-  lateralDrag: 80
-  maxSpeed: 10
-  turnSpeed: 30
-  sailArea: 10
-  airDensity: 1.225
-  sailForceCoefficient: 1
+  _wind: {fileID: 811392199}
+  _shipMass: 500
+  _forwardDrag: 15
+  _lateralDrag: 80
+  _maxSpeed: 10
+  _turnSpeed: 30
+  _sailArea: 10
+  _airDensity: 1.225
+  _sailForceCoefficient: 1
 --- !u!1 &2028533844
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,8 +995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7688c8214bd030946aa6dce39a6200b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipHud
-  document: {fileID: 2061629913}
-  shipController: {fileID: 2017775144}
+  _document: {fileID: 2061629913}
+  _shipController: {fileID: 2017775144}
+  _shipMovement: {fileID: 2017775147}
 --- !u!114 &2061629913
 MonoBehaviour:
   m_ObjectHideFlags: 0

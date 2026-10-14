@@ -7,42 +7,41 @@ public class ShipHud : MonoBehaviour
     private const string OpeningLabelName = "sail-opening-label";
     private const string RotationLabelName = "sail-rotation-label";
 
-    [Header("References")]
-    [SerializeField] private UIDocument document;
-    [SerializeField] private ShipController shipController;
+    [SerializeField] private UIDocument _document;
+    [SerializeField] private ShipController _shipController;
+    [SerializeField] private ShipMovement _shipMovement;
 
-    private Label openingLabel;
-    private Label rotationLabel;
-    private int shownOpening = int.MinValue;
-    private int shownRotation = int.MinValue;
+    private Label _openingLabel;
+    private Label _rotationLabel;
+
+    private int _shownOpening;
+    private int _shownRotation;
 
     private void OnEnable()
     {
-        VisualElement root = document.rootVisualElement;
+        VisualElement root = _document.rootVisualElement;
+        _openingLabel = root.Q<Label>(OpeningLabelName);
+        _rotationLabel = root.Q<Label>(RotationLabelName);
 
-        openingLabel = root.Q<Label>(OpeningLabelName);
-        rotationLabel = root.Q<Label>(RotationLabelName);
-
-        // Force a refresh on the next Update.
-        shownOpening = int.MinValue;
-        shownRotation = int.MinValue;
+        _shownOpening = int.MinValue;
+        _shownRotation = int.MinValue;
     }
 
     private void Update()
     {
-        int opening = Mathf.RoundToInt(shipController.SailOpening);
-        int rotation = Mathf.RoundToInt(shipController.SailRotation);
+        int opening = Mathf.RoundToInt(_shipController.SailOpening);
+        int rotation = Mathf.RoundToInt(_shipController.SailRotation);
 
-        if (opening != shownOpening)
+        if (opening != _shownOpening)
         {
-            shownOpening = opening;
-            openingLabel.text = $"Sail opening: {opening}%";
+            _shownOpening = opening;
+            _openingLabel.text = $"Sail opening: {opening}%";
         }
 
-        if (rotation != shownRotation)
+        if (rotation != _shownRotation)
         {
-            shownRotation = rotation;
-            rotationLabel.text = $"Sail rotation: {rotation}\u00B0";
+            _shownRotation = rotation;
+            _rotationLabel.text = $"Sail rotation: {rotation}\u00B0";
         }
     }
 }
